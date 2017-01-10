@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	Index.html
+	<button onclick="get()">btn get</button>
+	<button onclick="post()">btn post</button>
+	<button onclick="put()">btn put</button>
+	<button onclick="HEAD()">btn HEAD</button>
+	<button onclick="PATCH()">btn PATCH</button>
+	<button onclick="DELETE()">btn DELETE</button>
+	<button onclick="OPTIONS()">btn OPTIONS</button>
+	<button onclick="TRACE()">btn TRACE</button>
+	
+	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	
+	<script>
+		function post(){
+			$.ajax({
+                url: "/elearning/test",
+                cache: false,
+                type: "post",
+                success: function (result) {
+                	alert(result.data.greet)
+                },
+                error: function (err) {
+                    alert(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		function get(){
+			$.ajax({
+                url: "/elearning/test",
+                cache: false,
+                type: "get",
+                success: function (result) {
+                	alert(result.data.greet)
+                },
+                error: function (err) {
+                    alert(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		function put(){
+			$.ajax({
+                url: "/elearning/test",
+                cache: false,
+                type: "put",
+                success: function (result) {
+                	alert(result.data.greet)
+                },
+                error: function (err) {
+                    alert(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		
+		function TRACE(){
+			$.ajax({
+                url: "/elearning/test",
+                cache: false,
+                type: "trace",
+                success: function (result) {
+                	alert(result.data.greet)
+                },
+                error: function (err) {
+                    alert(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		
+		function DELETE(){
+			$.ajax({
+                url: "/elearning/test",
+                cache: false,
+                type: "delete",
+                success: function (result) {
+                	alert(result.data.greet)
+                },
+                error: function (err) {
+                    alert(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		
+		function OPTIONS(){
+			$.ajax({
+                url: "/elearning/test",
+                cache: false,
+                type: "options",
+                success: function (result) {
+                	alert(result.data.greet)
+                },
+                error: function (err) {
+                    alert(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		
+		function PATCH(){
+			$.ajax({
+                url: "/elearning/test",
+                cache: false,
+                type: "patch",
+                success: function (result) {
+                	alert(result.data.greet)
+                },
+                error: function (err) {
+                    alert(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		function HEAD(){
+			$.ajax({
+                url: "/elearning/test",
+                cache: false,
+                type: "head",
+                success: function (result) {
+                	alert(result.data.greet)
+                },
+                error: function (err) {
+                    alert(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		<!-- GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE -->
+	</script>
+</body>
+</html>

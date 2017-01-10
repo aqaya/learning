@@ -9,8 +9,8 @@
 	<modules>
 		<module>learning-common</module>
 		<module>learning-model</module>
-		<module>learning-web</module>
 		<module>learning-biz</module>
+		<module>learning-web</module>
 	</modules>
 
 	<properties>
