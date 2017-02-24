@@ -5,7 +5,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Index.html
 	<button onclick="get()">btn get</button>
 	<button onclick="post()">btn post</button>
 	<button onclick="put()">btn put</button>
@@ -15,14 +14,61 @@
 	<button onclick="OPTIONS()">btn OPTIONS</button>
 	<button onclick="TRACE()">btn TRACE</button>
 	
+	<button onclick="transfer12()">btn transfer 1 -> 2</button>
+	
+	<button onclick="transfer32()">btn transfer 3 -> 2</button>
+	
+	<button onclick="transfer34()">btn transfer 3 -> 4</button>
+	
 	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 	
 	<script>
+		function transfer12(){
+			$.ajax({
+                url: "/elearning/user/transfer",
+                data:{idFrom:1,idTo:2,amount:1},
+                success: function (result) {
+                	alert(result.msg)
+                },
+                error: function (err) {
+                	console.log(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		function transfer32(){
+			$.ajax({
+                url: "/elearning/user/transfer",
+                data:{idFrom:3,idTo:2,amount:1},
+                success: function (result) {
+                	alert(result.msg)
+                },
+                error: function (err) {
+                	console.log(err.status + " " + err.statusText);
+                }
+            });
+		}
+		
+		function transfer34(){
+			$.ajax({
+                url: "/elearning/user/transfer",
+                data:{idFrom:3,idTo:4,amount:1},
+                success: function (result) {
+                	alert(result.msg)
+                },
+                error: function (err) {
+                	console.log(err.status + " " + err.statusText);
+                }
+            });
+		}
+	
 		function post(){
 			$.ajax({
                 url: "/elearning/test",
                 cache: false,
                 type: "post",
+                contentType:"application/json",
+                data:JSON.stringify({id:1,name:"wujun"}),
                 success: function (result) {
                 	alert(result.data.greet)
                 },
@@ -37,6 +83,7 @@
                 url: "/elearning/test",
                 cache: false,
                 type: "get",
+                data:{name:"wujun",age:12},
                 success: function (result) {
                 	alert(result.data.greet)
                 },
@@ -47,10 +94,13 @@
 		}
 		
 		function put(){
+			var param = {strs:['col1','col2','col3']};  
 			$.ajax({
-                url: "/elearning/test",
+                url: "/elearning/test/a",
                 cache: false,
                 type: "put",
+                //contentType:"application/json",
+                data:"strs=1&strs=2",
                 success: function (result) {
                 	alert(result.data.greet)
                 },
@@ -66,6 +116,7 @@
                 url: "/elearning/test",
                 cache: false,
                 type: "trace",
+                data:{name:"wujun",age:12},
                 success: function (result) {
                 	alert(result.data.greet)
                 },
@@ -81,6 +132,7 @@
                 url: "/elearning/test",
                 cache: false,
                 type: "delete",
+                data:{name:"wujun",age:12},
                 success: function (result) {
                 	alert(result.data.greet)
                 },
@@ -96,6 +148,7 @@
                 url: "/elearning/test",
                 cache: false,
                 type: "options",
+                data:{name:"wujun",age:12},
                 success: function (result) {
                 	alert(result.data.greet)
                 },
@@ -111,6 +164,7 @@
                 url: "/elearning/test",
                 cache: false,
                 type: "patch",
+                data:{name:"wujun",age:12},
                 success: function (result) {
                 	alert(result.data.greet)
                 },
@@ -125,6 +179,7 @@
                 url: "/elearning/test",
                 cache: false,
                 type: "head",
+                data:{name:"wujun",age:12},
                 success: function (result) {
                 	alert(result.data.greet)
                 },

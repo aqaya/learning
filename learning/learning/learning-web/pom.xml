@@ -1,21 +1,67 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.wujun</groupId>
-    <artifactId>learning</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>learning-web</artifactId>
-  <packaging>war</packaging>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>com.wujun</groupId>
-  		<artifactId>learning-biz</artifactId>
-  	</dependency>
-  </dependencies>
-  
-  <build>
-  	<finalName>elearning</finalName>
-  </build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.wujun</groupId>
+		<artifactId>learning</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>learning-web</artifactId>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.wujun</groupId>
+			<artifactId>learning-infra-biz</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>elearning</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>jdbc.properties</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<filters>
+					<filter>src/main/resources/config-dev.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>int</id>
+			<build>
+				<filters>
+					<filter>src/main/resources/config-int.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>prd</id>
+			<build>
+				<filters>
+					<filter>src/main/resources/config-prd.properties</filter>
+				</filters>
+			</build>
+		</profile>
+	</profiles>
 </project>
