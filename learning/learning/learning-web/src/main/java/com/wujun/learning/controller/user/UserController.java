@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wujun.learning.controller.base.BaseController;
-import com.wujun.learning.controller.base.ResultResponse;
+import com.wujun.learning.commom.utils.BaseController;
+import com.wujun.learning.commom.utils.ResultResponse;
 import com.wujun.learning.service.UserService;
 
 @RestController

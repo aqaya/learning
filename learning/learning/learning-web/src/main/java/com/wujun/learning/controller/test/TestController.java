@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wujun.learning.controller.base.BaseController;
-import com.wujun.learning.controller.base.ResultResponse;
+import com.wujun.learning.commom.utils.BaseController;
+import com.wujun.learning.commom.utils.ResultResponse;
 import com.wujun.learning.model.User;
 import com.wujun.learning.service.TestService;
 

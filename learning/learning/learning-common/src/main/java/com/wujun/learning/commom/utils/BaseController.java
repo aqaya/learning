@@ -1,4 +1,4 @@
-package com.wujun.learning.controller.base;
+package com.wujun.learning.commom.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

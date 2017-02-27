@@ -38,12 +38,6 @@ public class UserService {
 		
 		CheckUtils.notNull("用户不存在!", from, to);
 		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		CheckUtils.ge(from.getBalance(), amount, "账户余额不足,不能转账!");
 
 		from.setBalance(from.getBalance() - amount);
