@@ -24,14 +24,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 //@EnableResourceServer
 public class LearningApplication {
 
-	@Autowired
+    @Autowired
     private Environment env;
-	
-	public static void main(String[] args) {
-		SpringApplication sa = new SpringApplication(LearningApplication.class);
-		sa.setAdditionalProfiles("dev");
-		sa.run(args);
-	}
+
+    public static void main(String[] args) {
+        SpringApplication sa = new SpringApplication(LearningApplication.class);
+        sa.setAdditionalProfiles("dev");
+        sa.run(args);
+    }
 
 //	@Bean
 //	public FilterRegistrationBean get() {
@@ -47,8 +47,8 @@ public class LearningApplication {
 //
 //		return filter;
 //	}
-	
-	@Bean
+
+    @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
         localSessionFactoryBean.setDataSource(dataSource);
@@ -68,13 +68,13 @@ public class LearningApplication {
         return localSessionFactoryBean;
     }
 
-	@Bean
-	public Docket createRestApi() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.apiInfo(new ApiInfoBuilder().title("Learning boot!").description("My learning web!")
-						.termsOfServiceUrl("url").version("2.0").build())
-				.select().apis(RequestHandlerSelectors.basePackage("com.wujun.learning.api")).paths(PathSelectors.any())
-				.build();
-	}
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(new ApiInfoBuilder().title("Learning boot!").description("My learning web!")
+                        .termsOfServiceUrl("url").version("2.0").build())
+                .select().apis(RequestHandlerSelectors.basePackage("com.wujun.learning.api")).paths(PathSelectors.any())
+                .build();
+    }
 
 }
