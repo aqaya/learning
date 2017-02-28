@@ -1,2 +1,8 @@
 /learning.ipr
 /learning.iws
+target/
+*.iml
+*.ipr
+*.iws
+.idea/
+
