@@ -18,13 +18,13 @@ import com.wujun.learning.service.UserService;
 public class CommonController extends BaseController{
 
 	Logger log = LoggerFactory.getLogger("DEBUG");
-	
+
 	@Autowired
 	Properties properties;
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@GetMapping("/greet")
 	public String sayHello(String name){
 		log.debug("Hello log!");
@@ -35,11 +35,11 @@ public class CommonController extends BaseController{
 		System.out.println("profilekey:" + properties.getProfileKey());
 		return "Hello " + name;
 	}
-	
+
 	@PostMapping("/transfer")
 	public ResultResponse transfer(Long idFrom, Long idTo, Double amount){
 		return processSimple(new ResultResponse(), new Taker() {
-			
+
 			@Override
 			public void process(ResultResponse rr) {
 				userService.transfer(idFrom, idTo, amount);
