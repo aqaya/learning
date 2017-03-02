@@ -1,16 +1,14 @@
 package com.wujun.learning.service;
 
-import java.util.Date;
-
+import com.wujun.learning.commom.factory.CheckUtils;
+import com.wujun.learning.dao.UserDAO;
+import com.wujun.learning.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wujun.learning.commom.factory.CheckUtils;
-import com.wujun.learning.dao.UserDAO;
-import com.wujun.learning.model.User;
-
+import java.util.Date;
 @Service
 public class UserService {
 	@Autowired
@@ -23,7 +21,8 @@ public class UserService {
 		System.out.println("thread id : " + Thread.currentThread().getId() + " \n" + date.toLocaleString() + "  begin");
 		CheckUtils.notNull("参数不能为空!", idFrom, idTo);
 		CheckUtils.ge(amount, 0.0, "转账金额必须大于0!");
-		
+
+
 		try {
 			Thread.sleep(10);
 		} catch (InterruptedException e) {

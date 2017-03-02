@@ -31,8 +31,9 @@ public class CommonController extends BaseController{
 		log.error("Hello log!");
 		log.debug("Hello log!");
 		System.out.println("key:" + properties.getKey());
-		System.out.println("key:" + properties.getHomeKey());
+		System.out.println("homekey:" + properties.getHomeKey());
 		System.out.println("profilekey:" + properties.getProfileKey());
+
 		return "Hello " + name;
 	}
 
@@ -46,5 +47,10 @@ public class CommonController extends BaseController{
 			}
 		});
 	}
+
+	private boolean get(){
+	    return true;
+    }
+
 	
 }

@@ -33,7 +33,7 @@ public abstract class BaseController {
 		return builder.toString();
 	}
 	
-	public static interface Taker {
+	public interface Taker {
 
 		void process(ResultResponse rr);
 		

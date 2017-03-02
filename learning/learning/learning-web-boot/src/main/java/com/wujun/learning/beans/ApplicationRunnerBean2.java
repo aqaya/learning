@@ -11,5 +11,4 @@ public class ApplicationRunnerBean2 implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("ApplicationRunnerBean2");
 	}
-
 }

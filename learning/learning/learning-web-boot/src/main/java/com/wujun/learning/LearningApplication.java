@@ -52,7 +52,7 @@ public class LearningApplication {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
         localSessionFactoryBean.setDataSource(dataSource);
-
+        System.out.println("1");
         Properties properties = new Properties();
         properties.put("hibernate.dialect", env.getProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect"));
         properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql", "true"));

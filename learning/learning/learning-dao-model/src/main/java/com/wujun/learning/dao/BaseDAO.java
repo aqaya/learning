@@ -85,7 +85,7 @@ public abstract class BaseDAO<T> {
     public boolean isExist(Serializable id) {
 
         T obj = selectById(id);
-        return obj == null ? false : true;
+        return obj != null;
 
     }
 
@@ -297,7 +297,7 @@ public abstract class BaseDAO<T> {
         PagingVO param = new PagingVO();
         param.setPageIndex("1");
         param.setPageSize(Integer.toString(n));
-        List<T> res = (List<T>) selectPaging(builder, param);
+        List<T> res = selectPaging(builder, param);
         return res;
     }
 
