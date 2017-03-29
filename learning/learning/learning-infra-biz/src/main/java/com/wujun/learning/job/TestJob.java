@@ -12,6 +12,6 @@ public class TestJob {
 	
 	@Scheduled(cron = "0 0/10 * * * *")
 	public void printTime(){
-		System.out.println(new Date().toLocaleString());
+		System.out.println(new Date().toString());
 	}
 }
