@@ -185,6 +185,9 @@ public class RxJavaTest {
 		
 		System.out.println("------------------输出分割线------------------");
 		// ------------------demo分割线------------------
+		Observable.just("Hello, world!").map((s) -> {return s + 1;}).subscribe((s)->{
+			System.out.println(s);
+		});
 		
 	}
 
