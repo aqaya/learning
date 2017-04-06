@@ -19,9 +19,10 @@ import com.wujun.learning.service.UserService;
 public class ServiceTest {
 
     @Autowired
-    private UserService statusService;
+    private UserService userService;
 
     @Test
     public void testAikaJob() {
+    	userService.transfer(1L, 2L, 10.0);
     }
 }

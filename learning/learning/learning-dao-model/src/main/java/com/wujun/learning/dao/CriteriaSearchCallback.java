@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
+@SuppressWarnings("deprecation")
 public class CriteriaSearchCallback<T> implements HibernateCallback<T> {
 
 	private DetachedCriteria criteria;

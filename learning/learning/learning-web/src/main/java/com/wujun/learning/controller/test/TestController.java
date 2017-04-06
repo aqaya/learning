@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +49,7 @@ public class TestController extends BaseController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResultResponse getPerson(@CookieValue(name="x", required = false)String x,HttpServletResponse res) {
 		System.out.println("Old cookie x: " + x);
-		x = new Date().toLocaleString();
+		x = DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss");
 		System.out.println("New cookie x: " + x);
 		res.addCookie(new Cookie("x", x));
 		return processSimple(new ResultResponse(), rr -> {

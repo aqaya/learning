@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
+@SuppressWarnings("deprecation")
 public class PagingCriteriaSearchCallback<T> implements HibernateCallback<T> {
 
 	private DetachedCriteria criteria;
@@ -66,17 +67,17 @@ public class PagingCriteriaSearchCallback<T> implements HibernateCallback<T> {
 		return criteria;
 	}
 
-	public PagingCriteriaSearchCallback setCriteria(DetachedCriteria criteria) {
+	public PagingCriteriaSearchCallback<T> setCriteria(DetachedCriteria criteria) {
 		this.criteria = criteria;
 		return this;
 	}
 
-	public PagingCriteriaSearchCallback setPageIndex(String pageIndex) {
+	public PagingCriteriaSearchCallback<T> setPageIndex(String pageIndex) {
 		this.pageIndex = pageIndex;
 		return this;
 	}
 
-	public PagingCriteriaSearchCallback setPageSize(String pageSize) {
+	public PagingCriteriaSearchCallback<T> setPageSize(String pageSize) {
 		this.pageSize = pageSize;
 		return this;
 	}

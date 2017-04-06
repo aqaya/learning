@@ -48,6 +48,7 @@ public class Test1 {
 		// 输出Excel文件
 		OutputStream output = new FileOutputStream(f);
 		wb.write(output);
+		wb.close();
 		output.close();
 	}
 

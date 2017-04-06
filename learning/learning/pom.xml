@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -130,7 +131,6 @@
 		<dependency>
 		    <groupId>com.netflix.hystrix</groupId>
 		    <artifactId>hystrix-core</artifactId>
-		    <version>1.5.9</version>
 		</dependency>
 
 		<dependency>
@@ -147,12 +147,10 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.swagger/swagger-core -->
 		<dependency>
@@ -193,7 +191,6 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 
 		<dependency>
@@ -212,26 +209,22 @@
 		<dependency>
 		    <groupId>commons-collections</groupId>
 		    <artifactId>commons-collections</artifactId>
-		    <version>${commons-collections.version}</version>
 		</dependency>
 		
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>${aspectj.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>${aspectj.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -245,43 +238,36 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
@@ -293,8 +279,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-		</dependency>
+			</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava -->
 		<dependency>
