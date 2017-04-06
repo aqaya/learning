@@ -19,7 +19,7 @@ import com.wujun.learning.service.UserService;
 public class ServiceTest {
 
     @Autowired
-    private UserService statusService;
+    private UserService userService;
 
     @Test
     public void testAikaJob() {
