@@ -1,4 +1,4 @@
-package test;
+package com.wujun.learning;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,12 +8,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.wujun.learning.service.UserService;
 
-
-/**
- * @Author mengqing
- * @Date 2017/02/07 09:24
- */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ServiceTest {
@@ -22,6 +16,11 @@ public class ServiceTest {
     private UserService userService;
 
     @Test
-    public void testAikaJob() {
+    public void testMoneyTransfer() {
+    	Long idFrom = 1L;
+    	Long idTo = 2L;
+    	Double amount = 0.99;
+    	
+    	userService.transfer(idFrom, idTo, amount);
     }
 }

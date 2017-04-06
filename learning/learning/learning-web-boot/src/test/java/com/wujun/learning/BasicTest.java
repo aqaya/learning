@@ -1,4 +1,4 @@
-package com.wujun.learning.test;
+package com.wujun.learning;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
