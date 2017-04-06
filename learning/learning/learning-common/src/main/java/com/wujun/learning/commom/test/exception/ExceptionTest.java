@@ -1,7 +1,5 @@
 package com.wujun.learning.commom.test.exception;
 
-import com.sun.tools.extcheck.Main;
-
 public class ExceptionTest {
 	private static int loopTimes = 1000000;
 	
@@ -32,21 +30,7 @@ public class ExceptionTest {
 		throw new RuntimeException();
 	}
 
-	private static void testException2() {
-		throw new RuntimeException();
-	}
-	
-	private static void testException3() {
-		throw new RuntimeException();
-	}
-	
 	private static void test1() {
-	}
-
-	private static void test2() {
-	}
-	
-	private static void test3() {
 	}
 
 }
