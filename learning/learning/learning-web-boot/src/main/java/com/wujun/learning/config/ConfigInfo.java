@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Configuration
-public class Properties {
+public class ConfigInfo {
 	@Value("${key1}")
 	private String key;
 	
@@ -15,7 +15,7 @@ public class Properties {
 	
 	@Value("${homekey}")
 	private String homeKey;
-
+	
 	public String getKey() {
 		return key;
 	}

@@ -27,7 +27,7 @@
 		<poi.version>3.15</poi.version>
 		<!-- <hibernate.version>4.3.11.Final</hibernate.version> -->
 		<hystrix.version>1.5.9</hystrix.version>
-		<boot.version>1.5.1.RELEASE</boot.version>
+		<boot.version>1.5.2.RELEASE</boot.version>
 		<cloud.version>Brixton.RELEASE</cloud.version>
 		<springfox.version>2.6.1</springfox.version>
 		<mp.version>2.0.5</mp.version>
@@ -40,6 +40,11 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+			    <groupId>org.mybatis.spring.boot</groupId>
+			    <artifactId>mybatis-spring-boot-starter</artifactId>
+			    <version>1.2.0</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
@@ -110,10 +115,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 		
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
+		-->
 		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -295,6 +302,10 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>
+	        </plugin>
 		</plugins>
 	</build>
 

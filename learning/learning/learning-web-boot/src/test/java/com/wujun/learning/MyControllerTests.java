@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.wujun.learning.api.CommonController;
-import com.wujun.learning.config.Properties;
+import com.wujun.learning.config.ConfigInfo;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(CommonController.class)
@@ -24,7 +24,7 @@ public class MyControllerTests {
     private MockMvc mvc;
 
     @MockBean
-    private Properties properties;
+    private ConfigInfo properties;
 
     @Test
     public void testExample() throws Exception {

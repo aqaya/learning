@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wujun.learning.commom.utils.BaseController;
 import com.wujun.learning.commom.utils.ResultResponse;
-import com.wujun.learning.config.Properties;
+import com.wujun.learning.config.ConfigInfo;
 import com.wujun.learning.service.UserService;
 
 @RestController
@@ -20,11 +20,11 @@ public class CommonController extends BaseController{
 	Logger log = LoggerFactory.getLogger("DEBUG");
 
 	@Autowired
-	Properties properties;
+	ConfigInfo properties;
 
 	@Autowired
 	UserService userService;
-
+	
 	@GetMapping("/greet")
 	public String sayHello(String name){
 		log.debug("Hello log!");
@@ -47,10 +47,4 @@ public class CommonController extends BaseController{
 			}
 		});
 	}
-
-	private boolean get(){
-	    return true;
-    }
-
-	
 }

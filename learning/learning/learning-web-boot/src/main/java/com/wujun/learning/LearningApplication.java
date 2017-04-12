@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
+import com.wujun.learning.config.ConfigInfo;
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -26,6 +28,9 @@ public class LearningApplication {
 
     @Autowired
     private Environment env;
+    
+    @Autowired
+    ConfigInfo configInfo;
 
     public static void main(String[] args) {
         SpringApplication sa = new SpringApplication(LearningApplication.class);
@@ -47,12 +52,12 @@ public class LearningApplication {
 //
 //		return filter;
 //	}
+    
 
     @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
         localSessionFactoryBean.setDataSource(dataSource);
-        System.out.println("1");
         Properties properties = new Properties();
         properties.put("hibernate.dialect", env.getProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect"));
         properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql", "true"));

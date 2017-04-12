@@ -49,19 +49,19 @@ public class MVCConfiguration implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry arg0) {
 		arg0.addInterceptor(new HandlerInterceptor() {
-			
+
 			@Override
 			public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
 				System.out.println("preHandle");
 				return true;
 			}
-			
+
 			@Override
 			public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
 					throws Exception {
 				System.out.println("postHandle");
 			}
-			
+
 			@Override
 			public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
 					throws Exception {

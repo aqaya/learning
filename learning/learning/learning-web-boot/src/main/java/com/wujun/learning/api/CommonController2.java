@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.wujun.learning.config.Properties;
+import com.wujun.learning.config.ConfigInfo;
 
 //@RestController
 //@RequestMapping("/common")
@@ -19,7 +19,7 @@ public class CommonController2 {
 	Logger log = LoggerFactory.getLogger("DEBUG");
 	
 	@Autowired
-	Properties properties;
+	ConfigInfo properties;
 	
 	//@GetMapping("/greet")
 	@GET

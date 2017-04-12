@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wujun.learning.commom.utils.BaseController;
 import com.wujun.learning.commom.utils.ResultResponse;
-import com.wujun.learning.config.Properties;
+import com.wujun.learning.config.ConfigInfo;
 import com.wujun.learning.service.Customer;
 import com.wujun.learning.service.CustomerRepository;
 import com.wujun.learning.service.UserService;
@@ -23,7 +23,7 @@ public class CustomerController extends BaseController{
 	Logger log = LoggerFactory.getLogger("DEBUG");
 
 	@Autowired
-	Properties properties;
+	ConfigInfo properties;
 
 	@Autowired
 	UserService userService;

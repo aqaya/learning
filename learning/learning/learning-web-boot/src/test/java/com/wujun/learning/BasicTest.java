@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.wujun.learning.config.Properties;
+import com.wujun.learning.config.ConfigInfo;
 import com.wujun.learning.service.RemoteService;
 import static org.mockito.BDDMockito.*;
 
@@ -18,7 +18,7 @@ import static org.mockito.BDDMockito.*;
 public class BasicTest {
 
 	@Autowired
-	Properties testService;
+	ConfigInfo testService;
 
 	@Autowired
 	private TestRestTemplate restTemplate;

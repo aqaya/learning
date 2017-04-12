@@ -14,12 +14,12 @@ public class ServiceTest {
 
     @Autowired
     private UserService userService;
-
+    
     @Test
     public void testMoneyTransfer() {
-    	Long idFrom = 1L;
-    	Long idTo = 2L;
-    	Double amount = 0.99;
+    	Long idFrom = 2L;
+    	Long idTo = 1L;
+    	Double amount = 0.01;
     	
     	userService.transfer(idFrom, idTo, amount);
     }

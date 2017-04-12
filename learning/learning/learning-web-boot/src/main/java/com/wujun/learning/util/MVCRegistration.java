@@ -1,7 +1,6 @@
 package com.wujun.learning.util;
 
 import org.springframework.boot.autoconfigure.web.WebMvcRegistrations;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
