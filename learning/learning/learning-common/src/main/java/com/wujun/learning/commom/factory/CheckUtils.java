@@ -14,4 +14,5 @@ public class CheckUtils {
 		notNull(exceptionMsg, value, valueToCompare);
 		if(value < valueToCompare)throw new CommonRuntimeException(exceptionMsg);
 	}
+	//rb3
 }
