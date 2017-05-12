@@ -15,3 +15,4 @@ public class CheckUtils {
 		if(value < valueToCompare)throw new CommonRuntimeException(exceptionMsg);
 	}
 }
+//rb6
