@@ -9,7 +9,7 @@ public class CheckUtils {
 			if(objects[i] == null)throw new CommonRuntimeException(exceptionMsg);
 		}
 	}
-	
+	//rb2
 	public static void ge(Double value, Double valueToCompare, String exceptionMsg){
 		notNull(exceptionMsg, value, valueToCompare);
 		if(value < valueToCompare)throw new CommonRuntimeException(exceptionMsg);
