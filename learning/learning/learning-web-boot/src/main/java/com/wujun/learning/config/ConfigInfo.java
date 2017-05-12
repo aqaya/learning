@@ -16,6 +16,27 @@ public class ConfigInfo {
 	@Value("${homekey}")
 	private String homeKey;
 	
+//	my.secret=${random.value}
+//	my.number=${random.int}
+//	my.bignumber=${random.long}
+//	my.uuid=${random.uuid}
+//	my.number.less.than.ten=${random.int(10)}
+//	my.number.in.range=${random.int[1024,65536]}
+	
+	@Value("${my.secret}")
+	private String mySecret;
+	@Value("${my.number}")
+	private int myNumber;
+	@Value("${my.bignumber}")
+	private long myBigNumber;
+	@Value("${my.uuid}")
+	private String myUuid;
+	@Value("${my.number.less.than.ten}")
+	private int myNumberLessThan10;
+	@Value("${my.number.in.range}")
+	private int myNumberInRange1024to65536;
+	
+	
 	public String getKey() {
 		return key;
 	}
@@ -38,6 +59,14 @@ public class ConfigInfo {
 
 	public void setProfileKey(String profileKey) {
 		this.profileKey = profileKey;
+	}
+
+	@Override
+	public String toString() {
+		return "ConfigInfo [key=" + key + ", profileKey=" + profileKey + ", homeKey=" + homeKey + ", mySecret="
+				+ mySecret + ", myNumber=" + myNumber + ", myBigNumber=" + myBigNumber + ", myUuid=" + myUuid
+				+ ", myNumberLessThan10=" + myNumberLessThan10 + ", myNumberInRange1024to65536="
+				+ myNumberInRange1024to65536 + "]";
 	}
 
 }

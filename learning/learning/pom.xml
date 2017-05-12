@@ -98,12 +98,10 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -310,11 +308,11 @@
 	</build>
 
 	<repositories>
-		<repository>
+		<!-- <repository>
 			<id>nexus-osc</id>
 			<name>nexus-osc</name>
 			<url>http://192.168.251.11:8081/nexus/content/groups/public/</url>
-		</repository>
+		</repository> -->
 		<repository>
 			<id>bravo</id>
 			<name>bravo</name>

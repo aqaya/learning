@@ -2,8 +2,8 @@
 
 <configuration>
     <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
-
-    <property name="logDirectory" value="~/logs"/>
+    
+    <property name="logDirectory" value="${user.home}/logs/elearning"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
