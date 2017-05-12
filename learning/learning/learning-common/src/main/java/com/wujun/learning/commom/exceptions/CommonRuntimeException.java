@@ -11,7 +11,7 @@ public class CommonRuntimeException extends RuntimeException {
 	public CommonRuntimeException() {
 		super();
 	}
-	
+	//2
 	public CommonRuntimeException(String msg){
 		super(msg);
 	}
