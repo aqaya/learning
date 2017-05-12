@@ -22,5 +22,5 @@ public class CommonRuntimeException extends RuntimeException {
 	public CommonRuntimeException(String msg,Throwable t){
 		super(msg, t);
 	}
-	
+	//rb5
 }
