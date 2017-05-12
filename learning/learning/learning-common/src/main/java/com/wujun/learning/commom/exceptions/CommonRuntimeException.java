@@ -14,7 +14,7 @@ public class CommonRuntimeException extends RuntimeException {
 	public CommonRuntimeException(String msg){
 		super(msg);
 	}
-	
+	//rb3
 	public CommonRuntimeException(Throwable t){
 		super(t);
 	}
