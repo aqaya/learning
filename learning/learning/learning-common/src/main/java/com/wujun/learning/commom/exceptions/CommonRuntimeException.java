@@ -24,4 +24,5 @@ public class CommonRuntimeException extends RuntimeException {
 		super(msg, t);
 	}
 	//3
+	//4
 }
