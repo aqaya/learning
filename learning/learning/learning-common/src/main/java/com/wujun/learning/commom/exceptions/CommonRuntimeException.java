@@ -3,7 +3,7 @@ package com.wujun.learning.commom.exceptions;
 public class CommonRuntimeException extends RuntimeException {
 
 	/**
-	 * Test git 1
+	 * Test git 2
 	 */
 	private static final long serialVersionUID = 5121475041850621312L;
 	
