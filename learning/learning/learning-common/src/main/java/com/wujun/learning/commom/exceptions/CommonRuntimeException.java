@@ -6,11 +6,11 @@ public class CommonRuntimeException extends RuntimeException {
 	 * 
 	 */
 	private static final long serialVersionUID = 5121475041850621312L;
-
+	//rb1
 	public CommonRuntimeException() {
 		super();
 	}
-
+	//rb2
 	public CommonRuntimeException(String msg){
 		super(msg);
 	}
