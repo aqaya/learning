@@ -10,7 +10,7 @@ public class CommonRuntimeException extends RuntimeException {
 	public CommonRuntimeException() {
 		super();
 	}
-
+	//rb2
 	public CommonRuntimeException(String msg){
 		super(msg);
 	}
