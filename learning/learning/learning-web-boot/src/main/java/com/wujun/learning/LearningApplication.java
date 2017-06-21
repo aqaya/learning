@@ -63,13 +63,13 @@ public class LearningApplication {
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
-		Properties p = System.getProperties();
-		p.list(System.out);
+		//Properties p = System.getProperties();
+		//p.list(System.out);
 
-		System.out.println("------------");
-		System.out.println(new MyPojo());
-		System.out.println("------------");
-		System.out.println(myPojo());
+//		System.out.println("------------");
+//		System.out.println(new MyPojo());
+//		System.out.println("------------");
+//		System.out.println(myPojo());
 		LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
 		localSessionFactoryBean.setDataSource(dataSource);
 		Properties properties = new Properties();
