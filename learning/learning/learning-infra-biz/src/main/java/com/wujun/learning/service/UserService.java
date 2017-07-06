@@ -38,6 +38,13 @@ public class UserService {
 
 	@Transactional
 	public void modifyName(Long id, String newName){
+		User user = userMapper.queryById(id);
+		user.setName(newName);
+		userMapper.updateById(user);
+	}
 
+	@Transactional
+	public User queryById(Long id){
+		return userMapper.queryById(id);
 	}
 }

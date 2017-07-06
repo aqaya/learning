@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="User" >
+
+
+    <resultMap id="CustomerResult" type="com.baj.wms.biz.domain.customer.CustomerDO">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="balance" property="balance" />
+    </resultMap>
+
+
+    <sql id="selectColumnList">
+        id
+        ,name
+        ,balance
+    </sql>
+
+
+    <sql id="queryWhereSql">
+        <if test="id != null">
+            AND id=#{id}
+        </if>
+        <if test="name != null">
+            AND name=#{name}
+        </if>
+
+        <if test="balance != null">
+            AND balance=#{balance}
+        </if>
+
+    </sql>
+
+
+    <insert id="insert" parameterType="com.wujun.learning.model.User">
+        insert into wms.customer (
+        name
+
+        ,balance
+        ) values (
+        <![CDATA[
+			    #{name}
+			   ,#{balance}
+			]]>
+        );
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+
+    <select id="queryById" resultMap="CustomerResult" parameterType="java.lang.Long">
+        select
+        <include refid="selectColumnList" />
+        from wms.customer
+        where id = #{id}
+    </select>
+
+
+
+    <select id="query" resultMap="CustomerResult"
+            parameterType="com.wujun.learning.model.User">
+        select
+        <include refid="selectColumnList" />
+        from wms.customer
+        <include refid="queryWhereSql" />
+        limit #{startIndex}, #{pageSize}
+    </select>
+
+    <select id="count" resultType="int"
+            parameterType="com.wujun.learning.model.UserQuery">
+        select
+        count(id)
+        from wms.customer
+        <include refid="queryWhereSql" />
+    </select>
+
+    <update id="updateById" parameterType="com.wujun.learning.model.User">
+        update wms.customer
+        set
+        <if test="name != null">
+            name = #{name},
+        </if>
+
+        <if test="balance != null">
+            balance = #{balance},
+        </if>
+
+        where id = #{id}
+    </update>
+
+
+
+    <update id="deleteById" parameterType="java.lang.Long">
+        delete from elearning.user
+        where id = #{id}
+    </update>
+
+
+</mapper>  

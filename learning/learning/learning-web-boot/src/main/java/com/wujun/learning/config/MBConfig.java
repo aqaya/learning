@@ -10,23 +10,21 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.util.DruidDataSourceUtils;
 
-//@Configuration
-//@Component
+@Configuration
 public class MBConfig implements TransactionManagementConfigurer {
 
-	@Autowired
-	ConfigInfo properties;
-	
 	@Autowired
     private Environment env;
 
@@ -36,7 +34,6 @@ public class MBConfig implements TransactionManagementConfigurer {
 		String url = env.getProperty("spring.datasource.url");
 		String username = env.getProperty("spring.datasource.username");
 		String password = env.getProperty("spring.datasource.password");
-		DruidDataSourceUtils.getName(null);
 		DruidDataSource druidDataSource = new DruidDataSource();
 		druidDataSource.setDriverClassName(driver);
 		druidDataSource.setUrl(url);
@@ -70,7 +67,7 @@ public class MBConfig implements TransactionManagementConfigurer {
 	@Bean
 	@Override
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
-		return new DataSourceTransactionManager(this.druidDataSource());
+		return new DataSourceTransactionManager(druidDataSource());
 	}
 
 	@Bean

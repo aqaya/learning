@@ -7,9 +7,9 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>learning-common</module>
-		<module>learning-dao-model</module>
-		<module>learning-infra-biz</module>
+		<!--<module>learning-common</module>-->
+		<!--<module>learning-dao-model</module>-->
+		<!--<module>learning-infra-biz</module>-->
 		<module>learning-web-boot</module>
 	</modules>
 
@@ -27,7 +27,7 @@
 		<poi.version>3.15</poi.version>
 		<!-- <hibernate.version>4.3.11.Final</hibernate.version> -->
 		<hystrix.version>1.5.9</hystrix.version>
-		<boot.version>1.5.2.RELEASE</boot.version>
+		<boot.version>1.5.4.RELEASE</boot.version>
 		<cloud.version>Brixton.RELEASE</cloud.version>
 		<springfox.version>2.6.1</springfox.version>
 		<mp.version>2.0.5</mp.version>
@@ -45,6 +45,7 @@
 			    <artifactId>mybatis-spring-boot-starter</artifactId>
 			    <version>1.2.0</version>
 			</dependency>
+
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
@@ -83,19 +84,25 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jersey</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-jersey</artifactId>-->
+		<!--</dependency>-->
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-data-mongodb</artifactId>-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<version>${boot.version}</version>
 		</dependency>
 
 		<!--<dependency>-->
@@ -137,36 +144,36 @@
 		</dependency>
 		-->
 		
-		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi</artifactId>
-		    <version>${poi.version}</version>
-		</dependency>
-				
-		<dependency>
-		    <groupId>com.netflix.hystrix</groupId>
-		    <artifactId>hystrix-core</artifactId>
-		</dependency>
+		<!--<dependency>-->
+		    <!--<groupId>org.apache.poi</groupId>-->
+		    <!--<artifactId>poi</artifactId>-->
+		    <!--<version>${poi.version}</version>-->
+		<!--</dependency>-->
+				<!---->
+		<!--<dependency>-->
+		    <!--<groupId>com.netflix.hystrix</groupId>-->
+		    <!--<artifactId>hystrix-core</artifactId>-->
+		<!--</dependency>-->
 
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>${velocity.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus</artifactId>
-			<version>${mp.version}</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.apache.velocity</groupId>-->
+			<!--<artifactId>velocity</artifactId>-->
+			<!--<version>${velocity.version}</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>com.baomidou</groupId>-->
+			<!--<artifactId>mybatis-plus</artifactId>-->
+			<!--<version>${mp.version}</version>-->
+		<!--</dependency>-->
 	
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.fasterxml.jackson.core</groupId>-->
+			<!--<artifactId>jackson-core</artifactId>-->
+			<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>com.fasterxml.jackson.core</groupId>-->
+			<!--<artifactId>jackson-annotations</artifactId>-->
+		<!--</dependency>-->
 		<!-- https://mvnrepository.com/artifact/io.swagger/swagger-core -->
 		<dependency>
 			<groupId>io.swagger</groupId>
@@ -196,10 +203,10 @@
 			<version>${springfox-petstore.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.fasterxml.jackson.core</groupId>-->
+			<!--<artifactId>jackson-databind</artifactId>-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -221,56 +228,6 @@
 		
 
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>${druid.version}</version>
@@ -282,11 +239,11 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava -->
-		<dependency>
-		    <groupId>io.reactivex.rxjava2</groupId>
-		    <artifactId>rxjava</artifactId>
-		    <version>${rxjava.version}</version>
-		</dependency>
+		<!--<dependency>-->
+		    <!--<groupId>io.reactivex.rxjava2</groupId>-->
+		    <!--<artifactId>rxjava</artifactId>-->
+		    <!--<version>${rxjava.version}</version>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<build>
