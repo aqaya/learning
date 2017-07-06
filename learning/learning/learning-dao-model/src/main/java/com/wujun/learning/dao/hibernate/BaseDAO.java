@@ -1,4 +1,4 @@
-package com.wujun.learning.dao;
+package com.wujun.learning.dao.hibernate;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.poi.ss.formula.functions.Count;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -54,34 +55,17 @@ public abstract class BaseDAO<T> {
         if (type instanceof ParameterizedType) {
             java.lang.reflect.Type[] parameterizedType = ((ParameterizedType) type).getActualTypeArguments();
             this.type = (Class<T>) parameterizedType[0];
-            //this.flushCount = SystemConfigHolder.instance().getInterger("system.db.flush.count", 100);
         }
     }
 
-    /**
-     * Gets the session factory.
-     *
-     * @return the session factory
-     */
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    /**
-     * Gets the current session.
-     *
-     * @return the current session
-     */
     public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
-    /**
-     * Checks if is exist.
-     *
-     * @param id the id
-     * @return true, if is exist
-     */
     public boolean isExist(Serializable id) {
 
         T obj = selectById(id);
@@ -89,13 +73,6 @@ public abstract class BaseDAO<T> {
 
     }
 
-    /**
-     * Select by id.
-     *
-     * @param id the id
-     * @return the t
-     */
-    @SuppressWarnings("unchecked")
     public T selectById(Serializable id) {
 
         Session session = getCurrentSession();
@@ -104,12 +81,6 @@ public abstract class BaseDAO<T> {
 
     }
 
-    /**
-     * Select all.
-     *
-     * @return the list
-     */
-    @SuppressWarnings("unchecked")
     public List<T> selectAll() {
 
         Session session = getCurrentSession();
@@ -118,12 +89,6 @@ public abstract class BaseDAO<T> {
 
     }
 
-    /**
-     * Select all.
-     *
-     * @param isDelete the is delete
-     * @return the list
-     */
     public List<T> selectAll(boolean isDelete) {
 
         DetachedCriteriaBuilder builder = DetachedCriteriaBuilder.instance(type);
@@ -149,12 +114,6 @@ public abstract class BaseDAO<T> {
         return CollectionUtils.isNotEmpty(result);
     }
 
-    /**
-     * Count all.
-     *
-     * @return the long
-     */
-    @SuppressWarnings("rawtypes")
     public Long countAll() {
 
         final String entityName = sessionFactory.getClassMetadata(type).getEntityName();
@@ -167,29 +126,15 @@ public abstract class BaseDAO<T> {
 
     }
 
-    /**
-     * Select.
-     *
-     * @param builder the builder
-     * @return the list
-     */
     public List<T> select(DetachedCriteriaBuilder builder) {
         return selectE(builder);
     }
 
-    /**
-     * Select e.
-     *
-     * @param <E>     the element type
-     * @param builder the builder
-     * @return the list
-     */
     public <E> List<E> selectE(DetachedCriteriaBuilder builder) {
 
         CriteriaSearchCallback<List<E>> callback = new CriteriaSearchCallback<List<E>>();
         callback.setCriteria(builder.getDetachedCriteria());
 
-        // getCurrentSession().createCriteria(persistentClass)
         List<E> list = Lists.newArrayList();
         try {
             list = callback.doInHibernate(getCurrentSession());
@@ -201,13 +146,6 @@ public abstract class BaseDAO<T> {
         return list;
     }
 
-    /**
-     * Select e.
-     *
-     * @param <E>      the element type
-     * @param callback the callback
-     * @return the list
-     */
     public <E> List<E> selectE(HibernateCallback<List<E>> callback) {
 
         List<E> list = Lists.newArrayList();
@@ -219,38 +157,17 @@ public abstract class BaseDAO<T> {
         return list;
     }
 
-    /**
-     * Select top one.
-     *
-     * @param builder the builder
-     * @return the t
-     */
     public T selectTopOne(DetachedCriteriaBuilder builder) {
         List<T> list = selectTopN(builder, 1);
         return CollectionUtils.isNotEmpty(list) ? list.get(0) : null;
     }
 
-    /**
-     * Select top one.
-     *
-     * @param hql  the hql
-     * @param objs the objs
-     * @return the object
-     */
     public Object selectTopOne(String hql, Object[] objs) {
 
         List<Object> list = select(hql, objs);
         return CollectionUtils.isNotEmpty(list) ? list.get(0) : null;
     }
 
-    /**
-     * Select. 命名参数按字母顺序传递
-     *
-     * @param <E>  the element type
-     * @param hql  the hql
-     * @param objs the objs
-     * @return the list
-     */
     public <E> List<E> select(String hql, Object... objs) {
         Session session = getCurrentSession();
         Query query = session.createQuery(hql);
@@ -280,18 +197,9 @@ public abstract class BaseDAO<T> {
             }
 
         }
-        @SuppressWarnings("unchecked")
-        List<E> list = query.list();
-        return list;
+        return (List<E>) query.list();
     }
 
-    /**
-     * Select top n.
-     *
-     * @param builder the builder
-     * @param n       the n
-     * @return the list
-     */
     public List<T> selectTopN(DetachedCriteriaBuilder builder, int n) {
 
         PagingVO param = new PagingVO();
@@ -301,44 +209,25 @@ public abstract class BaseDAO<T> {
         return res;
     }
 
-    /**
-     * @param builder
-     * @return
-     */
     public <E> E selectTopE(DetachedCriteriaBuilder builder) {
 
         List<E> res = selectTopNE(builder, 1);
         return CollectionUtils.isEmpty(res) ? null : res.get(0);
     }
 
-    /**
-     * Select top ne.
-     *
-     * @param <E>     the element type
-     * @param builder the builder
-     * @param n       the n
-     * @return the list
-     */
     public <E> List<E> selectTopNE(DetachedCriteriaBuilder builder, int n) {
         PagingVO param = new PagingVO();
         param.setPageIndex("1");
         param.setPageSize(Integer.toString(n));
-        @SuppressWarnings("unchecked")
-        List<E> res = (List<E>) selectPaging(builder, param);
-        return res;
+        return (List<E>) selectPaging(builder, param);
     }
 
-    /**
-     * @param builder
-     * @param page
-     * @return
-     */
     List<T> selectPaging(DetachedCriteriaBuilder builder, PagingVO page) {
 
         builder.setOrder(page.getOrderName());
         DetachedCriteria criteria = builder.getDetachedCriteria();
 
-        PagingCriteriaSearchCallback<List<T>> searchCallback = new PagingCriteriaSearchCallback<List<T>>(criteria);
+        PagingCriteriaSearchCallback<List<T>> searchCallback = new PagingCriteriaSearchCallback<>(criteria);
         searchCallback.setPageIndex(page.getPageIndex()).setPageSize(page.getPageSize());
 
         List<T> list = Lists.newArrayList();
@@ -353,10 +242,6 @@ public abstract class BaseDAO<T> {
         return list;
     }
 
-    /**
-     * @param builder
-     * @return
-     */
     List<T> selectList(DetachedCriteriaBuilder builder) {
 
         DetachedCriteria criteria = builder.getDetachedCriteria();
@@ -370,12 +255,6 @@ public abstract class BaseDAO<T> {
 
     }
 
-    /**
-     * Query single.
-     *
-     * @param builder the builder
-     * @return the t
-     */
     public T querySingle(DetachedCriteriaBuilder builder) {
 
         builder.getDetachedCriteria().setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
@@ -388,38 +267,20 @@ public abstract class BaseDAO<T> {
         }
     }
 
-    /**
-     * Select paging e.
-     *
-     * @param <E>     the element type
-     * @param builder the builder
-     * @param page    the page
-     * @return the list
-     */
     public <E> List<E> selectPagingE(DetachedCriteriaBuilder builder, PagingVO page) {
 
-        PagingCriteriaSearchCallback<List<E>> searchCallback = new PagingCriteriaSearchCallback<List<E>>(
+        PagingCriteriaSearchCallback<List<E>> searchCallback = new PagingCriteriaSearchCallback<>(
                 builder.getDetachedCriteria());
         searchCallback.setPageIndex(page.getPageIndex()).setPageSize(page.getPageSize());
         List<E> list = Lists.newArrayList();
         try {
             list = searchCallback.doInHibernate(getCurrentSession());
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
+        } catch (HibernateException | SQLException e) {
             throw new RuntimeException(e);
         }
         return list;
     }
 
-    /**
-     * Select paging vo.
-     *
-     * @param queryBuilder the query builder
-     * @param page         the page
-     * @param countBuilder the count builder
-     * @return the paging vo
-     */
     public PagingVO selectPagingVO(DetachedCriteriaBuilder queryBuilder, PagingVO page,
                                    DetachedCriteriaBuilder countBuilder) {
 
@@ -436,12 +297,6 @@ public abstract class BaseDAO<T> {
         return page;
     }
 
-    /**
-     * Count.
-     *
-     * @param builder the builder
-     * @return the long
-     */
     public Long count(DetachedCriteriaBuilder builder) {
 
         // Projections.sqlProjection(sql, columnAliases, types)
@@ -464,11 +319,6 @@ public abstract class BaseDAO<T> {
         }
     }
 
-    /**
-     * @param builder
-     * @param property
-     * @return
-     */
     public Number sum(DetachedCriteriaBuilder builder, String property) {
 
         builder.setProjection(Projections.sum(property));
@@ -477,34 +327,18 @@ public abstract class BaseDAO<T> {
         return CollectionUtils.isEmpty(sums) ? 0 : sums.get(0);
     }
 
-    /**
-     * Save.
-     *
-     * @param t the t
-     * @return the serializable
-     */
     public Serializable save(T t) {
         checkMutable();
         Session session = getCurrentSession();
         return session.save(t);
     }
 
-    /**
-     * Delete.
-     *
-     * @param t the t
-     */
     public void delete(T t) {
         checkMutable();
         Session session = getCurrentSession();
         session.delete(t);
     }
 
-    /**
-     * Delete by id.
-     *
-     * @param id the id
-     */
     public void deleteById(Serializable id) {
 
         checkMutable();
@@ -514,81 +348,38 @@ public abstract class BaseDAO<T> {
 
     }
 
-    /**
-     * Update.
-     *
-     * @param t the t
-     */
     public void update(T t) {
         checkMutable();
         Session session = getCurrentSession();
         session.update(t);
-        // session.addEventListeners(listeners);
     }
 
-    /**
-     * Save or update.
-     *
-     * @param t the t
-     */
     public void saveOrUpdate(T t) {
         checkMutable();
         Session session = getCurrentSession();
         session.saveOrUpdate(t);
     }
 
-    /**
-     * Merge.
-     *
-     * @param t the t
-     * @return the t
-     */
-    @SuppressWarnings("unchecked")
     public T merge(T t) {
         checkMutable();
         Session session = getCurrentSession();
         return (T) session.merge(t);
     }
 
-    /**
-     * Save or update batch.
-     *
-     * @param ts the ts
-     */
     public void saveOrUpdateBatch(Collection<T> ts) {
-
         saveOrUpdateBatch(ts, flushCount);
     }
 
-    /**
-     * Save or update batch.
-     *
-     * @param ts         the ts
-     * @param flushCount the flush count
-     */
     public void saveOrUpdateBatch(Collection<T> ts, int flushCount) {
 
         if (CollectionUtils.isNotEmpty(ts)) {
-            int i = 0;
             for (T t : ts) {
                 this.saveOrUpdate(t);
-                if (i > 0 && i++ % flushCount == 0) {
-                    getCurrentSession().flush();
-                }
             }
         }
     }
 
-    /**
-     * Bulk update.
-     *
-     * @param hql     the hql
-     * @param objects the objects
-     * @return the int
-     */
     public int bulkUpdate(String hql, Object... objects) {
-
-        // this.getCurrentSession().createCriteria(persistentClass)
 
         Query query = this.getCurrentSession().createQuery(hql);
         if (ArrayUtils.isNotEmpty(objects)) {
@@ -602,12 +393,6 @@ public abstract class BaseDAO<T> {
         return query.executeUpdate();
     }
 
-    /**
-     * @param hql
-     * @param param
-     * @return
-     */
-    @SuppressWarnings("rawtypes")
     public int bulkUpdate(String hql, QueryParam param) {
 
         Query query = this.getCurrentSession().createQuery(hql);
@@ -629,44 +414,24 @@ public abstract class BaseDAO<T> {
 
     }
 
-    /**
-     * Delete batch.
-     *
-     * @param ts the ts
-     */
     public void deleteBatch(Collection<T> ts) {
 
         deleteBatch(ts, flushCount);
     }
 
-    /**
-     * Delete batch.
-     *
-     * @param ts         the ts
-     * @param flushCount the flush count
-     */
     public void deleteBatch(Collection<T> ts, int flushCount) {
 
         if (CollectionUtils.isNotEmpty(ts)) {
-            int i = 0;
             for (T t : ts) {
                 this.delete(t);
-                if (i > 0 && i++ % flushCount == 0) {
-                    getCurrentSession().flush();
-                }
             }
         }
     }
 
-    /**
-     * Flush and clear.
-     */
     public void flushAndClear() {
 
         Session session = getCurrentSession();
         session.flush();
-        // session.clear();
-
     }
 
     private void checkMutable() {
@@ -679,8 +444,7 @@ public abstract class BaseDAO<T> {
 
     private String getEntityIdName() {
 
-        String idName = getSessionFactory().getClassMetadata(this.type).getIdentifierPropertyName();
-        return idName;
+        return getSessionFactory().getClassMetadata(this.type).getIdentifierPropertyName();
     }
 
 }

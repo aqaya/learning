@@ -14,13 +14,17 @@ import com.wujun.learning.config.ConfigInfo;
 //@RequestMapping("/common")
 @Component
 @Path("/hello")
-public class CommonController2 {
+public class JerseyCommonController {
 
-	Logger log = LoggerFactory.getLogger("DEBUG");
-	
+	private Logger log = LoggerFactory.getLogger("DEBUG");
+
+	private final ConfigInfo properties;
+
 	@Autowired
-	ConfigInfo properties;
-	
+	public JerseyCommonController(ConfigInfo properties) {
+		this.properties = properties;
+	}
+
 	//@GetMapping("/greet")
 	@GET
 	public String sayHello(){

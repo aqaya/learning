@@ -39,23 +39,6 @@ public class LearningApplication {
 		sa.setAdditionalProfiles("dev");
 		sa.run(args);
 	}
-
-	// @Bean
-	// public FilterRegistrationBean get() {
-	// FilterRegistrationBean filter = new FilterRegistrationBean();
-	//
-	// filter.setName("greeting");
-	// GreetingFilter greetingFilter = new GreetingFilter();
-	// filter.setFilter(greetingFilter);
-	// filter.setOrder(1);
-	// List<String> urlList = new ArrayList<String>();
-	// urlList.add("/common/*");
-	// filter.setUrlPatterns(urlList);
-	//
-	// return filter;
-	// }
-
-	// @ConfigurationProperties("foo")
 	@Bean
 	public MyPojo myPojo() {
 		return new MyPojo();
@@ -63,13 +46,6 @@ public class LearningApplication {
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
-		//Properties p = System.getProperties();
-		//p.list(System.out);
-
-//		System.out.println("------------");
-//		System.out.println(new MyPojo());
-//		System.out.println("------------");
-//		System.out.println(myPojo());
 		LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
 		localSessionFactoryBean.setDataSource(dataSource);
 		Properties properties = new Properties();
