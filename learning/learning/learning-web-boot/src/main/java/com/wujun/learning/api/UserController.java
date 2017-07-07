@@ -31,8 +31,6 @@ public class UserController extends BaseController {
 
     @RequestMapping("/{id}")
     public ResultResponse queryById(@PathVariable(name = "id") Long id) {
-        return processSimple(new ResultResponse(), rr -> {
-            rr.addAttribute("user", userService.queryById(id));
-        });
+        return processSimple(new ResultResponse(), rr -> rr.addAttribute("user", userService.queryById(id)));
     }
 }
