@@ -24,16 +24,18 @@ public class UserService {
 		CheckUtils.notNull("参数不能为空!", idFrom, idTo);
 		CheckUtils.ge(amount, 0.0, "转账金额必须大于0!");
 
-		User from = userDAO.selectById(idFrom);
-		User to = userDAO.selectById(idTo);
-		
+		User from = userMapper.queryById(idFrom);
+		User to = userMapper.queryById(idTo);
+
 		CheckUtils.notNull("用户不存在!", from, to);
-		
+
 		CheckUtils.ge(from.getBalance(), amount, "账户余额不足,不能转账!");
 
 		from.setBalance(from.getBalance() - amount);
 
 		to.setBalance(to.getBalance() + amount);
+		userMapper.updateById(from);
+        userMapper.updateById(to);
 	}
 
 	@Transactional

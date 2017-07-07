@@ -1,81 +1,73 @@
 package com.wujun.learning.config;
 
-import java.io.IOException;
-
-import javax.sql.DataSource;
-
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.TransactionManagementConfigurer;
-
-import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.util.DruidDataSourceUtils;
 
 @Configuration
-public class MBConfig implements TransactionManagementConfigurer {
+//@EnableTransactionManagement  由springboot默认支持声明式事务,可不加此注释
+public class MBConfig{// implements EnvironmentAware{
 
-	@Autowired
-    private Environment env;
+//    @Override
+//    public void setEnvironment(Environment environment) {
+//        this.env = environment;
+//    }
+//
+//    @Autowired
+//	private Environment env;
 
-	@Bean
-	public DataSource druidDataSource(){
-		String driver = env.getProperty("hibernate.dialect");
-		String url = env.getProperty("spring.datasource.url");
-		String username = env.getProperty("spring.datasource.username");
-		String password = env.getProperty("spring.datasource.password");
-		DruidDataSource druidDataSource = new DruidDataSource();
-		druidDataSource.setDriverClassName(driver);
-		druidDataSource.setUrl(url);
-		druidDataSource.setUsername(username);
-		druidDataSource.setPassword(password);
-		return druidDataSource;
-	}
-
+    /**
+     *
+     * 因为application.properties里有spring.datasource相关配置,
+     * 以下几个bean交由springboot自动生成,需要注意mybatis的MapperLocations配置
+     *
 	@Bean(name = "sqlSessionFactory")
-	public SqlSessionFactory sqlSessionFactoryBean() throws IOException {
+	public SqlSessionFactory sqlSessionFactoryBean(DataSource dataSource) throws IOException {
 		System.out.println("init mb sqlSessionFactory!");
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-		//bean.setDataSource(this.druidDataSource());
-		bean.setTypeHandlersPackage("com.wujun.learning.dao");
-		bean.setTypeAliasesPackage("com.wujun.learning.model");
+		bean.setDataSource(dataSource);
+		Interceptor[] interceptors = new Interceptor[1];
+		interceptors[0] = new MBInterceptor();
+		bean.setPlugins(interceptors);
+
 		ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
+		bean.setMapperLocations(resolver.getResources("classpath:mapper*//*.xml"));
 		try {
 			return bean.getObject();
 		} catch (Exception e) {
+			System.out.println("Msg : " + e.getMessage());
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
 
 	@Bean
+	public DataSource druidDataSource(){
+        System.out.println("Get datasource....");
+        DruidDataSource druidDataSource = new DruidDataSource();
+		druidDataSource.setDriverClassName(env.getProperty("hibernate.dialect"));
+		druidDataSource.setUrl(env.getProperty("spring.datasource.url"));
+		druidDataSource.setUsername(env.getProperty("spring.datasource.username"));
+		druidDataSource.setPassword(env.getProperty("spring.datasource.password"));
+        System.out.println("datasource : " + druidDataSource);
+        return druidDataSource;
+	}
+
+	@Bean
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
+	*/
 
-	@Bean
-	@Override
-	public PlatformTransactionManager annotationDrivenTransactionManager() {
-		return new DataSourceTransactionManager(druidDataSource());
-	}
+//	@Bean
+//	@Override
+//	public PlatformTransactionManager annotationDrivenTransactionManager() {
+//		return new DataSourceTransactionManager(druidDataSource());
+//	}
 
-	@Bean
-	public MapperScannerConfigurer mapperScannerConfigurer(DataSource dataSource) {
-		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-		mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-		mapperScannerConfigurer.setBasePackage("com.wujun.learning.dao");
-		return mapperScannerConfigurer;
-	}
-
+//	@Bean
+//	public MapperScannerConfigurer mapperScannerConfigurer() {
+//		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+//		mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
+//		mapperScannerConfigurer.setBasePackage("com.wujun.learning.dao");
+//		return mapperScannerConfigurer;
+//	}
 }
