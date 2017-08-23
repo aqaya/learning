@@ -78,10 +78,18 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!--<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.apache.storm/storm-core -->
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -102,6 +110,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 			<version>${boot.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<!--<dependency>-->
@@ -232,6 +245,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.1.7</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava -->
 		<dependency>
 		    <groupId>io.reactivex.rxjava2</groupId>
@@ -258,19 +277,5 @@
 	        </plugin>
 		</plugins>
 	</build>
-
-	<repositories>
-		<!-- <repository>
-			<id>nexus-osc</id>
-			<name>nexus-osc</name>
-			<url>http://192.168.251.11:8081/nexus/content/groups/public/</url>
-		</repository> -->
-		<repository>
-			<id>bravo</id>
-			<name>bravo</name>
-			<url>http://maven.xiaolongbus.com/nexus/content/groups/public/</url>
-
-		</repository>
-	</repositories>
 
 </project>

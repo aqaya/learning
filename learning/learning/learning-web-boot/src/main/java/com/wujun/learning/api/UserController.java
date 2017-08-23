@@ -6,7 +6,12 @@ import com.wujun.learning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.math.BigInteger;
 
 @RestController
 @RequestMapping("/users")
@@ -30,7 +35,17 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/{id}")
-    public ResultResponse queryById(@PathVariable(name = "id") Long id) {
+    public ResultResponse queryById(@PathVariable(name = "id") Long id, HttpServletResponse response) {
+        //acw_tc=598580fd|a9b58f34f2dd805a825c190af3e2d00f; Path=/; Domain=.haomaiche.com; HttpOnly
+        Cookie cookie = new Cookie("acw_sc","598580fd|a9b58f34f2dd805a825c190af3e2d00f");
+        cookie.setPath("/");
+        response.addCookie(cookie);
         return processSimple(new ResultResponse(), rr -> rr.addAttribute("user", userService.queryById(id)));
     }
+
+    @RequestMapping("/big-integer")
+    public ResultResponse bigInteger(@RequestParam(defaultValue = "1") BigInteger bigInteger) {
+        return processSimple(new ResultResponse(), rr -> rr.addAttribute("bigInteger", bigInteger));
+    }
+
 }
